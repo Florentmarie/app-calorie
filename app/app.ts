@@ -1,14 +1,28 @@
 /// <reference path="../typings/tsd.d.ts" />
 import {Component, View, bootstrap} from 'angular2/angular2';
+import {Words} from 'service/words';
+
+
 
 @Component({
-  selector: 'app'
+  selector: 'app',
+  appInjector: [Words]
 })
 @View({
-  template: '<h1>Welcome !</h1>'
+  templateUrl: `test.html`
 })
 class App {
 
+  word : String;
+  words : Words;
+	
+  	constructor(words: Words) {
+    	this.words = words;
+  	}
+
+  	getWord() {    	
+    	this.word = this.words.getWord();
+  	}
 }
 
 bootstrap(App);
